@@ -29,11 +29,6 @@ class AvailabilityNotificationWidgetDependencyProvider extends AbstractBundleDep
      */
     public const CLIENT_SESSION = 'CLIENT_SESSION';
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     public function provideDependencies(Container $container): Container
     {
         $container = parent::provideDependencies($container);
@@ -44,11 +39,6 @@ class AvailabilityNotificationWidgetDependencyProvider extends AbstractBundleDep
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addAvailabilityNotificationClient(Container $container): Container
     {
         $container->set(static::CLIENT_AVAILABILITY_NOTIFICATION, function (Container $container) {
@@ -58,11 +48,6 @@ class AvailabilityNotificationWidgetDependencyProvider extends AbstractBundleDep
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addCustomerClient(Container $container): Container
     {
         $container->set(static::CLIENT_CUSTOMER, function (Container $container) {

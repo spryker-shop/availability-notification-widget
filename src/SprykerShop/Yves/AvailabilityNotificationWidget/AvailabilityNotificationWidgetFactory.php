@@ -20,57 +20,36 @@ use Symfony\Component\Form\FormInterface;
 
 class AvailabilityNotificationWidgetFactory extends AbstractFactory
 {
-    /**
-     * @return \Symfony\Component\Form\FormInterface
-     */
     public function createAvailabilityNotificationSubscriptionForm(): FormInterface
     {
         return $this->getFormFactory()->create(AvailabilityNotificationSubscriptionForm::class);
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormInterface
-     */
     public function createAvailabilityUnsubscribeForm(): FormInterface
     {
         return $this->getFormFactory()->create(AvailabilityNotificationUnsubscriptionForm::class);
     }
 
-    /**
-     * @return \SprykerShop\Yves\AvailabilityNotificationWidget\Form\DataProvider\AvailabilityNotificationSubscriptionFormDataProvider
-     */
     public function createAvailabilityNotificationSubscriptionFormDataProvider(): AvailabilityNotificationSubscriptionFormDataProvider
     {
         return new AvailabilityNotificationSubscriptionFormDataProvider($this->getCustomerClient());
     }
 
-    /**
-     * @return \SprykerShop\Yves\AvailabilityNotificationWidget\Form\DataProvider\AvailabilityNotificationUnsubscriptionFormDataProvider
-     */
     public function createAvailabilityUnsubscribeFormDataProvider(): AvailabilityNotificationUnsubscriptionFormDataProvider
     {
         return new AvailabilityNotificationUnsubscriptionFormDataProvider($this->getCustomerClient());
     }
 
-    /**
-     * @return \SprykerShop\Yves\AvailabilityNotificationWidget\Dependency\Client\AvailabilityNotificationWidgetToAvailabilityNotificationClientInterface
-     */
     public function getAvailabilityNotificationClient(): AvailabilityNotificationWidgetToAvailabilityNotificationClientInterface
     {
         return $this->getProvidedDependency(AvailabilityNotificationWidgetDependencyProvider::CLIENT_AVAILABILITY_NOTIFICATION);
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormFactory
-     */
     public function getFormFactory(): FormFactory
     {
         return $this->getProvidedDependency(ApplicationConstants::FORM_FACTORY);
     }
 
-    /**
-     * @return \SprykerShop\Yves\AvailabilityNotificationWidget\Dependency\Client\AvailabilityNotificationWidgetToCustomerClientInterface
-     */
     public function getCustomerClient(): AvailabilityNotificationWidgetToCustomerClientInterface
     {
         return $this->getProvidedDependency(AvailabilityNotificationWidgetDependencyProvider::CLIENT_CUSTOMER);

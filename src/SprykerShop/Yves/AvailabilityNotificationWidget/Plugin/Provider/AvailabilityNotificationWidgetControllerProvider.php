@@ -25,11 +25,6 @@ class AvailabilityNotificationWidgetControllerProvider extends AbstractYvesContr
      */
     public const ROUTE_AVAILABILITY_NOTIFICATION_SUBSCRIBE = 'availability-notification/subscribe';
 
-    /**
-     * @param \Silex\Application $app
-     *
-     * @return void
-     */
     protected function defineControllers(Application $app): void
     {
         $this

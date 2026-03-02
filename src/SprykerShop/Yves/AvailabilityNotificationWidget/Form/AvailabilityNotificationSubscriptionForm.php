@@ -44,19 +44,11 @@ class AvailabilityNotificationSubscriptionForm extends AbstractType
      */
     public const LABEL_NOTIFY_ME = 'availability_notification.notify_me';
 
-    /**
-     * @return string
-     */
     public function getBlockPrefix(): string
     {
         return 'availabilityNotificationSubscriptionForm';
     }
 
-    /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     *
-     * @return void
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

@@ -37,11 +37,6 @@ class AvailabilityNotificationSubscriptionController extends AbstractController
         return $this->redirectResponseExternal($request->headers->get('referer'));
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return void
-     */
     protected function executeSubscribeAction(Request $request): void
     {
         $subscriptionForm = $this
@@ -97,11 +92,6 @@ class AvailabilityNotificationSubscriptionController extends AbstractController
         return $this->redirectResponseExternal($request->headers->get('referer'));
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return void
-     */
     protected function executeUnsubscribeAction(Request $request): void
     {
         $unsubscribeForm = $this->getFactory()
@@ -137,11 +127,6 @@ class AvailabilityNotificationSubscriptionController extends AbstractController
         $this->addSuccessMessage(static::GLOSSARY_KEY_SUCCESSFULLY_UNSUBSCRIBED);
     }
 
-    /**
-     * @param string $sku
-     *
-     * @return void
-     */
     protected function removeAvailabilityNotificationSubscriptionFromCustomer(string $sku): void
     {
         $customerTransfer = $this->getFactory()->getCustomerClient()->getCustomer();

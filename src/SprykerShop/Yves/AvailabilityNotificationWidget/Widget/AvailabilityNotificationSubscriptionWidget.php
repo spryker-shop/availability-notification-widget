@@ -20,9 +20,6 @@ class AvailabilityNotificationSubscriptionWidget extends AbstractWidget
      */
     protected const SESSION_AVAILABILITY_NOTIFICATION_EMAIL = 'availabilityNotificationEmail';
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductViewTransfer $productViewTransfer
-     */
     public function __construct(ProductViewTransfer $productViewTransfer)
     {
         $this->addParameter('isSubscribed', $this->getIsSubscribed($productViewTransfer));
@@ -30,27 +27,16 @@ class AvailabilityNotificationSubscriptionWidget extends AbstractWidget
         $this->addParameter('unsubscribeForm', $this->getUnsubscriptionForm($productViewTransfer));
     }
 
-    /**
-     * @return string
-     */
     public static function getName(): string
     {
         return 'AvailabilityNotificationSubscriptionWidget';
     }
 
-    /**
-     * @return string
-     */
     public static function getTemplate(): string
     {
         return '@AvailabilityNotificationWidget/views/availability-subscription/availability-subscription.twig';
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductViewTransfer $productViewTransfer
-     *
-     * @return bool
-     */
     protected function getIsSubscribed(ProductViewTransfer $productViewTransfer): bool
     {
         $customerTransfer = $this->getFactory()->getCustomerClient()->getCustomer();

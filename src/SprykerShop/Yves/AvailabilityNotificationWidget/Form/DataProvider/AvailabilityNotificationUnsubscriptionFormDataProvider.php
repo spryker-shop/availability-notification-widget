@@ -18,19 +18,11 @@ class AvailabilityNotificationUnsubscriptionFormDataProvider
      */
     protected $customerClient;
 
-    /**
-     * @param \SprykerShop\Yves\AvailabilityNotificationWidget\Dependency\Client\AvailabilityNotificationWidgetToCustomerClientInterface $customerClient
-     */
     public function __construct(AvailabilityNotificationWidgetToCustomerClientInterface $customerClient)
     {
         $this->customerClient = $customerClient;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductViewTransfer $productViewTransfer
-     *
-     * @return \Generated\Shared\Transfer\AvailabilityNotificationSubscriptionTransfer
-     */
     public function getData(ProductViewTransfer $productViewTransfer): AvailabilityNotificationSubscriptionTransfer
     {
         return (new AvailabilityNotificationSubscriptionTransfer())->setSku($productViewTransfer->getSku());

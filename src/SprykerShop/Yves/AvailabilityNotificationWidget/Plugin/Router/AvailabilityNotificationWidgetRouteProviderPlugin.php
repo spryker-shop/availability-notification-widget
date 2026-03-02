@@ -54,11 +54,6 @@ class AvailabilityNotificationWidgetRouteProviderPlugin extends AbstractRoutePro
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addAvailabilityNotificationSubscribeRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute('/availability-notification/subscribe', 'AvailabilityNotificationWidget', 'AvailabilityNotificationSubscription', 'subscribeAction');
@@ -67,11 +62,6 @@ class AvailabilityNotificationWidgetRouteProviderPlugin extends AbstractRoutePro
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addAvailabilityNotificationUnsubscribeRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute('/availability-notification/unsubscribe', 'AvailabilityNotificationWidget', 'AvailabilityNotificationSubscription', 'unsubscribeAction');
