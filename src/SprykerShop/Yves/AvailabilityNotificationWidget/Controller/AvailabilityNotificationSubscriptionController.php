@@ -7,6 +7,7 @@
 
 namespace SprykerShop\Yves\AvailabilityNotificationWidget\Controller;
 
+use Generated\Shared\Transfer\AvailabilityNotificationSubscriptionResponseTransfer;
 use SprykerShop\Yves\ShopApplication\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,6 +25,11 @@ class AvailabilityNotificationSubscriptionController extends AbstractController
      * @var string
      */
     public const GLOSSARY_KEY_SUCCESSFULLY_UNSUBSCRIBED = 'availability_notification.unsubscribed';
+
+    /**
+     * @uses \Spryker\Shared\AvailabilityNotification\AvailabilityNotificationConfig::MESSAGE_SUBSCRIPTION_ALREADY_EXISTS
+     */
+    protected const string ERROR_MESSAGE_SUBSCRIPTION_ALREADY_EXISTS = 'Subscription already exists.';
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -67,6 +73,13 @@ class AvailabilityNotificationSubscriptionController extends AbstractController
             ->getAvailabilityNotificationClient()
             ->subscribe($availabilityNotificationSubscriptionTransfer);
 
+        // A repeated subscription answers like a new one, so the form, which needs no login, does not reveal who is subscribed.
+        if ($this->isRepeatedSubscription($responseTransfer)) {
+            $this->addSuccessMessage(static::GLOSSARY_KEY_SUCCESSFULLY_SUBSCRIBED);
+
+            return;
+        }
+
         if ($responseTransfer->getIsSuccess() === false) {
             $this->addErrorMessage($responseTransfer->getErrorMessage());
 
@@ -78,6 +91,12 @@ class AvailabilityNotificationSubscriptionController extends AbstractController
         if ($customerTransfer !== null) {
             $customerTransfer->addAvailabilityNotificationSubscriptionSku($responseTransfer->getAvailabilityNotificationSubscription()->getSku());
         }
+    }
+
+    protected function isRepeatedSubscription(AvailabilityNotificationSubscriptionResponseTransfer $responseTransfer): bool
+    {
+        return $responseTransfer->getIsSuccess() === false
+            && $responseTransfer->getErrorMessage() === static::ERROR_MESSAGE_SUBSCRIPTION_ALREADY_EXISTS;
     }
 
     /**
